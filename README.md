@@ -1,23 +1,25 @@
-# ReactTS 18 with Chakra UI and Vite
+# Barcelona. Ciutat de Dones - Interactive Map
 
-This is a [React](https://reactjs.org) + [TypeScript](https://www.typescriptlang.org/) + [Chakra UI](https://chakra-ui.com) boilerplate to be built with [Vite](https://vitejs.dev). It also includes [Husky](https://typicode.github.io/husk) and a pre-commit hook that runs `yarn format`.
+## Project Overview
 
-## What's inside?
+The "Barcelona. Ciutat de Dones" project aims to highlight the extraordinary contributions of numerous women who have left their mark on our city and society through various fields. This interactive map serves as a visual and educational tool, enabling users to explore the network of influential figures and learn more about their stories.
 
-- [ReactJS](https://reactjs.org)
-- [Vite](https://vitejs.dev)
-- [TypeScript](https://www.typescriptlang.org)
-- [Chakra UI](https://chakra-ui.com)
-- [Framer Motion](https://www.framer.com/motion/)
-- [Jest](https://jestjs.io)
-- [Testing Library](https://testing-library.com)
-- [Eslint](https://eslint.org)
-- [Prettier](https://prettier.io)
-- [Husky](https://typicode.github.io/husky)
+## Features
 
-\+ other smaller dependencies
+- **Interactive Map**: Clickable nodes representing individual women with contributions to Barcelona's heritage.
+- **Search Functionality**: Users can search for specific names or filter by categories.
+- **Accessibility Focused**: Implementing best practices to ensure the map is accessible to all users.
 
-## Getting started
+## Technologies Used
+
+- [ReactJS](https://reactjs.org): For building the user interface.
+- [Vite](https://vitejs.dev): As a build tool for blazing fast development experience.
+- [Chakra UI](https://chakra-ui.com): For a modular and accessible component library.
+- \+ other smaller dependencies
+
+## Getting Started
+
+To get a local copy up and running, follow these simple steps.
 
 1. Create the project.
 
@@ -40,12 +42,12 @@ This is a [React](https://reactjs.org) + [TypeScript](https://www.typescriptlang
 4. Install dependencies.
 
    ```bash
-   yarn
+   pnpm
    ```
 
 5. Serve with hot reload at http://localhost:5173.
    ```bash
-   yarn dev
+   pnpm dev
    ```
 
 ## Recommended VS Code extensions
@@ -60,28 +62,28 @@ This is a [React](https://reactjs.org) + [TypeScript](https://www.typescriptlang
 
 - Run eslint
   ```bash
-  yarn lint
+  pnpm lint
   ```
 - Run eslint with fixing
   ```bash
-  yarn lint:fix
+  pnpm lint:fix
   ```
 
 ### Build commands
 
 ```bash
-yarn build
+pnpm build
 ```
 
 ### Test commands
 
 - Run tests with coverage (will open the coverage if all tests succeed)
   ```bash
-  yarn test
+  pnpm test
   ```
 - Watch tests
   ```bash
-  yarn test:watch
+  pnpm test:watch
   ```
 
 ### Commit commands
@@ -89,7 +91,7 @@ This project use [commitlint](https://github.com/conventional-changelog/commitli
 
 To help you build more efficient commit messages, you can use the [commitizen](https://github.com/commitizen/cz-cli) package by running this command :
 ```bash
-yarn cz
+pnpm cz
 ```
 
 ## License

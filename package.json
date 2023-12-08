@@ -1,10 +1,10 @@
 {
-  "name": "vibrant",
-  "version": "0.0.0",
+  "name": "ciutat-de-dones-map",
+  "version": "1.0.0",
   "author": {
-    "name": "David Sima",
-    "email": "hello@david-sima.dev",
-    "url": "https://github.com/The24thDS"
+    "name": "Ana Gamito Romero",
+    "email": "anagam@uoc.edu",
+    "url": "https://github.com/Tsuna-mi"
   },
   "private": true,
   "license": "MIT",
@@ -13,12 +13,12 @@
     "build": "tsc && vite build",
     "serve": "vite preview",
     "lint": "eslint src --ext .tsx --ext .ts",
-    "lint:fix": "yarn lint --fix",
+    "lint:fix": "npm run lint --fix",
     "format": "prettier --config ./.prettierrc -w 'src/**/*.{tsx,ts}' && git update-index --again",
-    "pretest": "yarn lint:fix",
+    "pretest": "npm run lint:fix",
     "test": "jest --colors --passWithNoTests",
     "posttest": "npx http-server coverage/lcov-report",
-    "test:watch": "yarn test --collectCoverage=false --watch",
+    "test:watch": "npm run test --collectCoverage=false --watch",
     "prepare": "husky install",
     "cz": "cz"
   },
@@ -61,5 +61,15 @@
     "ts-jest": "^29.0.5",
     "typescript": "^4.5.5",
     "vite": "^4.0.4"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "last 2 versions"
+    ],
+    "development": [
+      "last 1 version"
+    ]
   }
 }
