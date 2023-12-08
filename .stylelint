@@ -1,0 +1,15 @@
+{
+  "extends": "stylelint-config-standard",
+  "rules": {
+    "block-no-empty": true,
+    "color-no-invalid-hex": true,
+    "no-descending-specificity": null,
+    "function-no-unknown": null,
+    "selector-pseudo-class-no-unknown": [
+      true,
+      {
+        "ignorePseudoClasses": ["global", "export"]
+      }
+    ]
+  }
+}
