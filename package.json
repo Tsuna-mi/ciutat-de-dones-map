@@ -27,9 +27,16 @@
     "@chakra-ui/react": "^2.8.2",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
+    "@fontsource/kanit": "^5.0.18",
+    "@fontsource/source-sans-pro": "^5.0.8",
+    "@reduxjs/toolkit": "^2.0.1",
+    "@trivago/prettier-plugin-sort-imports": "^4.3.0",
     "framer-motion": "^8.5.5",
+    "json-server": "^0.17.4",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-redux": "^9.0.2",
+    "stylelint": "^16.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.23.5",
@@ -71,5 +78,6 @@
     "development": [
       "last 1 version"
     ]
-  }
+  },
+  "packageManager": "pnpm@8.11.0"
 }
