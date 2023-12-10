@@ -58,6 +58,32 @@ const theme = extendTheme({
             color: 'white',
           },
         },
+        normal: {
+          bg: '#8B538F',
+          color: 'white',
+          _hover: {
+            bg: '#5A3B5D',
+            borderWidth: '4px',
+            _disabled: {
+              bg: '#555',
+              color: 'white',
+              borderWidth: '2px',
+            },
+          },
+          _disabled: {
+            bg: '#555',
+            color: 'white',
+          },
+        },
+        pagination: {
+          color: '#555',
+          border: 0,
+          _hover: {
+            bg: '#8B538F',
+            color: 'white',
+            borderRadius: '4',
+          },
+        },
       },
       defaultProps: {
         variant: 'solid',
