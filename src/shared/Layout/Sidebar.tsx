@@ -42,6 +42,7 @@ export function Sidebar({
           position: 'absolute',
           left: '0',
           height: '100%',
+          minHeight: '100vh',
           top: '0',
         }}
       >
