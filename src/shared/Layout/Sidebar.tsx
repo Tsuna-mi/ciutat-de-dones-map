@@ -1,6 +1,6 @@
 import { ToggleButton } from './ToggleButton';
 import { motion } from 'framer-motion';
-
+import { ContentSidebar } from './ContentSidebar';
 export function Sidebar({
   getButtonProps,
   onToggle,
@@ -46,7 +46,7 @@ export function Sidebar({
           top: '0',
         }}
       >
-        welcome home
+        <ContentSidebar />
       </motion.section>
     </>
   );

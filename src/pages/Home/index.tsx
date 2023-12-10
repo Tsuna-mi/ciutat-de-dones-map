@@ -1,9 +1,9 @@
 import { Page } from 'shared/Layout/Page';
 
-function HomePage() {
+export function HomePage() {
   return (
-    <Page maxW="container.xl" spacing={{ base: 8, lg: 20 }}>
-      <p>page</p>
+    <Page>
+      <p>Home Page</p>
     </Page>
   );
 }
