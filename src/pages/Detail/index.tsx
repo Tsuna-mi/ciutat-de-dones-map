@@ -15,7 +15,7 @@ import { BackButton } from 'shared/Layout/BackButton';
 
 export function DetailPage() {
   return (
-    <Page p="6">
+    <Page>
       <Flex>
         <BackButton />
         <Spacer />

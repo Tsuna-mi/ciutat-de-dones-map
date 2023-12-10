@@ -20,6 +20,7 @@ function Page({ children, maxW = 'container.lg', ...props }: IProps) {
       spacing={10}
       px={{ base: 3, md: 4 }}
       maxW={maxW}
+      padding="24px"
       m="0 auto"
       {...props}
     >
