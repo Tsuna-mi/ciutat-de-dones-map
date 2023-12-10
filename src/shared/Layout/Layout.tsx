@@ -25,7 +25,7 @@ export function Layout() {
         sx={{ paddingTop: '0 !important', paddingBottom: '0 !important' }}
       >
         <Image
-          src={'src/img/map-ciutat-de-dones.svg'}
+          src={'src/map-ciutat-de-dones.svg'}
           alt={"Map 'Barcelona. Ciutat de dones'"}
           objectFit="cover"
           sx={{ paddingTop: 0, paddingBottom: 0 }}
