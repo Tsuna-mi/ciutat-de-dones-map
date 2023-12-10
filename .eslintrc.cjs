@@ -14,7 +14,6 @@ module.exports = {
     "@typescript-eslint/no-explicit-any": [
       "warn",
       {
-        fixToUnknown: true,
         ignoreRestArgs: true,
       },
     ],
