@@ -14,25 +14,14 @@ export const router = createBrowserRouter([
         path: '/',
         lazy: () => import('./Home'),
       },
-      // {
-      //   path: '/sign-in',
-      //   lazy: () => import('./SignIn'),
-      // },
-      // {
-      //   path: '/products',
-      //   loader: productsPageLoader,
-      //   lazy: () => import('./Products'),
-      // },
-      // {
-      //   path: '/products/:productId',
-      //   loader: productPageLoader,
-      //   lazy: () => import('./Product'),
-      // },
-      // {
-      //   path: '/cart/:cartId',
-      //   loader: cartPageLoader,
-      //   lazy: () => import('./Cart'),
-      // },
+      {
+        path: '/results',
+        lazy: () => import('./Results'),
+      },
+      {
+        path: '/detail',
+        lazy: () => import('./Detail'),
+      },
     ],
   },
 ]);
