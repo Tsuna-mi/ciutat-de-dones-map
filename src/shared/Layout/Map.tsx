@@ -103,6 +103,8 @@ export function Map() {
             alt={"Map 'Barcelona. Ciutat de dones'"}
             objectFit="cover"
             sx={{
+              minWidth: '100vw',
+              minHeight: '100vh',
               paddingTop: 0,
               paddingBottom: 0,
             }}
