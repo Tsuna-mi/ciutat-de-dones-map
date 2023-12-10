@@ -12,15 +12,12 @@ export const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        lazy: () => import('./Home'),
       },
       {
         path: '/results',
-        lazy: () => import('./Results'),
       },
       {
         path: '/detail',
-        lazy: () => import('./Detail'),
       },
     ],
   },
