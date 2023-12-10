@@ -1,15 +1,22 @@
-import { Sidebar } from './Sidebar';
-import { Box, Image, useDisclosure } from '@chakra-ui/react';
+import { Map } from './Map';
 import { useState } from 'react';
+import { Box, useDisclosure } from '@chakra-ui/react';
+import { Sidebar } from './Sidebar';
 import { Outlet } from '../Router';
 
 export function Layout() {
   const { getButtonProps, getDisclosureProps, isOpen, onToggle } =
-    useDisclosure();
+    useDisclosure({ defaultIsOpen: true });
   const [hidden, setHidden] = useState(!isOpen);
   const asideWidth = 380;
   return (
     <Box as="main">
+      <Box
+        as="section"
+        sx={{ paddingTop: '0 !important', paddingBottom: '0 !important' }}
+      >
+        <Map />
+      </Box>
       <Sidebar
         getButtonProps={getButtonProps}
         onToggle={onToggle}
@@ -19,19 +26,7 @@ export function Layout() {
         hidden={hidden}
         setHidden={setHidden}
       />
-      <Box
-        pt={{ base: 20, md: 24 }}
-        pb={{ base: 4, md: 6 }}
-        sx={{ paddingTop: '0 !important', paddingBottom: '0 !important' }}
-      >
-        <Image
-          src={'/img/map-ciutat-de-dones.svg'}
-          alt={"Map 'Barcelona. Ciutat de dones'"}
-          objectFit="cover"
-          sx={{ paddingTop: 0, paddingBottom: 0 }}
-        />
-        <Outlet />
-      </Box>
+      <Outlet />
     </Box>
   );
 }
