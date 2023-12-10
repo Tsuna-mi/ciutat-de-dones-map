@@ -10,7 +10,7 @@ export function Layout() {
   const [hidden, setHidden] = useState(!isOpen);
   const asideWidth = 380;
   return (
-    <Box as="main">
+    <Box as="main" bg="yellow">
       <Box
         as="section"
         sx={{ paddingTop: '0 !important', paddingBottom: '0 !important' }}
