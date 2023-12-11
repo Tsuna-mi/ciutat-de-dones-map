@@ -2,6 +2,7 @@ import {
   Box,
   Button,
   ButtonGroup,
+  Center,
   Flex,
   Heading,
   IconButton,
@@ -21,24 +22,26 @@ export function DetailPage() {
         <Spacer />
         <Box height="45px" bg="white" borderRadius={'6'}>
           <ButtonGroup>
-            {/* <Button onClick={'setPreviousPage'} isDisabled={'!previousEnabled'}> */}
-            <IconButton
-              variant="pagination"
-              size="xl"
-              aria-label="Biografía Anterior"
-              icon={<ChevronLeftIcon />}
-            />
-            <Text as="span" color="gray5" lineHeight="2.7rem">
-              {/* {'currentPage'} / {'totalPages'} */}
-              {'28'} / {'130'}
-            </Text>
-            {/* <Button onClick={'setNextPage'} isDisabled={'!nextEnabled'}> */}
-            <IconButton
-              variant="pagination"
-              size="xl"
-              aria-label="Biografía Siguiente"
-              icon={<ChevronRightIcon />}
-            />
+            <Center>
+              {/* <Button onClick={'setPreviousPage'} isDisabled={'!previousEnabled'}> */}
+              <IconButton
+                variant="pagination"
+                size="xl"
+                aria-label="Biografía Anterior"
+                icon={<ChevronLeftIcon />}
+              />
+              <Text as="span" color="gray5" lineHeight="2.7rem">
+                {/* {'currentPage'} / {'totalPages'} */}
+                {'28'} / {'130'}
+              </Text>
+              {/* <Button onClick={'setNextPage'} isDisabled={'!nextEnabled'}> */}
+              <IconButton
+                variant="pagination"
+                size="xl"
+                aria-label="Biografía Siguiente"
+                icon={<ChevronRightIcon />}
+              />
+            </Center>
           </ButtonGroup>
         </Box>
       </Flex>
@@ -60,6 +63,9 @@ export function DetailPage() {
           fontFamily={'Source Sans Pro'}
           size="xl"
           lineHeight={2}
+          style={{
+            whiteSpace: 'preserve',
+          }}
         >
           Valerie Powles
         </Heading>
@@ -67,6 +73,10 @@ export function DetailPage() {
           fontFamily={'Source Sans Pro'}
           fontWeight={'100'}
           fontSize={'20px'}
+          lineHeight={'1'}
+          style={{
+            whiteSpace: 'preserve',
+          }}
         >
           Birmingham, 1950 - Barcelona, 2011
         </Text>
