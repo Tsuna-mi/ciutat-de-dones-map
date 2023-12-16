@@ -44,7 +44,27 @@ export function ResultsPage() {
         hidden={hidden}
         setHidden={setHidden}
       />
-      <List>
+      <List
+        style={{
+          maxHeight: isOpen ? '350px' : '800px', //
+          margin: '30px 0',
+          wordWrap: 'break-word',
+          overflowY: 'auto',
+          whiteSpace: 'preserve',
+        }}
+        sx={{
+          '&::-webkit-scrollbar': {
+            width: '8px',
+          },
+          '&::-webkit-scrollbar-track': {
+            width: '6px',
+          },
+          '&::-webkit-scrollbar-thumb': {
+            background: 'secondaryLight',
+            borderRadius: '12px',
+          },
+        }}
+      >
         <ListItem>
           <Box as="article">
             <Flex>
