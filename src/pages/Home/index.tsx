@@ -117,8 +117,18 @@ export function HomePage() {
                 minWidth="300px"
                 placeholder="Selecciona una línea de Metro"
               >
-                <option>United Arab Emirates</option>
-                <option>Nigeria</option>
+                <option value="option1">Todas</option>
+                <option value="l1">Línea 1 (L1) - Roja</option>
+                <option value="l2">Línea 2 (L2) - Lila</option>
+                <option value="l3">Línea 3 (L3) - Verde</option>
+                <option value="l4">Línea 4 (L4) - Amarilla</option>
+                <option value="l5">Línea 5 (L5) - Azul</option>
+                <option value="l9n">Línea 9 Norte (L9N) - Naranja</option>
+                <option value="l9s">Línea 9 Sur (L9S) - Naranja</option>
+                <option value="l10n">Línea 10 Norte (L10N) - Azul claro</option>
+                <option value="l10s">Línea 10 Sur (L10S) - Azul claro</option>
+                <option value="l11">Línea 11 (L11) - Verde claro</option>
+                <option value="l12">Línea 12 (L12) - Morado</option>
               </Select>
             </FormControl>
             <FormControl>
@@ -127,9 +137,16 @@ export function HomePage() {
                 variant="selectPrimary"
                 placeholder="Selecciona una categoría"
               >
-                <option value="option1">Option 1</option>
-                <option value="option2">Option 2</option>
-                <option value="option3">Option 3</option>
+                <option value="all">Todas</option>
+                <option value="activism">Activismo y cambio social</option>
+                <option value="health">Salud y Bienestar</option>
+                <option value="sports">Deporte y Representación</option>
+                <option value="culture">Cultura y Educación</option>
+                <option value="literature">Literatura y Periodismo</option>
+                <option value="womens_rights">Derechos de la Mujer</option>
+                <option value="social_science">
+                  Ciencias Sociales y Urbanismo
+                </option>
               </Select>
             </FormControl>
           </VStack>
