@@ -88,12 +88,7 @@ export function ProjectHeader({
           </Flex>
         </Box>
       </motion.section>
-      <ToggleSidebarContentButton
-        getButtonProps={getButtonProps}
-        onToggle={onToggle}
-        isOpen={isOpen}
-        asideHeight={asideHeight}
-      />
+      <ToggleSidebarContentButton onToggle={onToggle} isOpen={isOpen} />
     </>
   );
 }
