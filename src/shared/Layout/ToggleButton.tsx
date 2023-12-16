@@ -24,10 +24,10 @@ export function ToggleButton({
       height="45px"
       width="30px"
       _focus={{
-        boxShadow: '0 0 1px 3px #FCDF87, 0 1px 1px rgba(0, 0, 0, .15)',
+        boxShadow: '0 0 1px 3px #C3A3C9, 0 1px 1px rgba(0, 0, 0, .15)',
       }}
       _focus-visible={{
-        boxShadow: '0 0 1px 3px #FCDF87, 0 1px 1px rgba(0, 0, 0, .15)',
+        boxShadow: '0 0 1px 3px #C3A3C9, 0 1px 1px rgba(0, 0, 0, .15)',
       }}
       style={{
         position: 'absolute',
