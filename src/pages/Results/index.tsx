@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
   Box,
   Center,
@@ -9,12 +10,18 @@ import {
   ListItem,
   Spacer,
   Text,
+  useDisclosure,
 } from '@chakra-ui/react';
-import { ChevronDownIcon } from '@chakra-ui/icons';
 import { Page } from 'shared/Layout/Page';
+import { ProjectHeader } from 'shared/Layout/ProjectHeader';
 import { BackButton } from 'shared/Layout/BackButton';
 
 export function ResultsPage() {
+  const { getButtonProps, getDisclosureProps, isOpen, onToggle } =
+    useDisclosure({ defaultIsOpen: true });
+  const [hidden, setHidden] = useState(!isOpen);
+  const asideHeight = 380;
+
   return (
     <Page>
       <Flex marginBottom="20px">
@@ -28,10 +35,15 @@ export function ResultsPage() {
           </Center>
         </Box>
       </Flex>
-      <Divider bg="white" />
-      <Center>
-        <ChevronDownIcon w={14} h={14} color="accent" />
-      </Center>
+      <ProjectHeader
+        getButtonProps={getButtonProps}
+        onToggle={onToggle}
+        isOpen={isOpen}
+        asideHeight={asideHeight}
+        getDisclosureProps={getDisclosureProps}
+        hidden={hidden}
+        setHidden={setHidden}
+      />
       <List>
         <ListItem>
           <Box as="article">
