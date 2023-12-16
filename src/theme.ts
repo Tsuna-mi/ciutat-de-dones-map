@@ -1,10 +1,48 @@
-import { extendTheme, ThemeConfig } from '@chakra-ui/react';
+import { selectAnatomy } from '@chakra-ui/anatomy';
+import {
+  createMultiStyleConfigHelpers,
+  extendTheme,
+  ThemeConfig,
+} from '@chakra-ui/react';
+
+const { definePartsStyle, defineMultiStyleConfig } =
+  createMultiStyleConfigHelpers(selectAnatomy.keys);
 
 const config: ThemeConfig = {
   initialColorMode: 'system',
   useSystemColorMode: true,
   cssVarPrefix: 'ck',
 };
+
+const selectPrimary = definePartsStyle({
+  field: {
+    background: 'white',
+    color: '#555',
+    border: '1px solid #8B538F',
+    borderRadius: '5',
+    _focusWithin: {
+      ringColor: '#C3A3C9',
+      ring: '1px',
+      ringOffset: '1px',
+      ringOffsetColor: 'purple.100',
+      borderColor: 'purple.50',
+    },
+  },
+  icon: {
+    color: 'gray.100',
+    fontSize: '3xl',
+    width: '45px',
+    background: '#8B538F',
+    border: '2px solid #C3A3C9',
+    position: 'absolute',
+    right: '0',
+    borderRightRadius: '5',
+  },
+});
+
+const selectTheme = defineMultiStyleConfig({
+  variants: { selectPrimary },
+});
 
 const theme = extendTheme({
   config,
@@ -23,6 +61,7 @@ const theme = extendTheme({
     body: `'Source Sans Pro', sans-serif`,
   },
   components: {
+    Select: selectTheme,
     Button: {
       baseStyle: {
         fontWeight: 'bold',
