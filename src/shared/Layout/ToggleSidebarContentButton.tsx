@@ -14,6 +14,7 @@ export function ToggleSidebarContentButton({
       <Center h="45px" mt="-2px">
         <Box
           as="button"
+          aria-label="Mostrar/Ocultar la información del Proyecto"
           onClick={onToggle}
           height="40px"
           width="50px"

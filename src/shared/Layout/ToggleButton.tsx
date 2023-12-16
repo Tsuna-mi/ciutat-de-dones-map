@@ -19,6 +19,7 @@ export function ToggleButton({
     <Box
       {...getButtonProps()}
       as="button"
+      aria-label="Mostrar/Ocultar el panel lateral"
       onClick={onToggle}
       bg="primary"
       height="45px"
