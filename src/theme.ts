@@ -20,13 +20,6 @@ const selectPrimary = definePartsStyle({
     color: '#555',
     border: '1px solid #8B538F',
     borderRadius: '5',
-    _focusWithin: {
-      ringColor: '#C3A3C9',
-      ring: '1px',
-      ringOffset: '1px',
-      ringOffsetColor: 'purple.100',
-      borderColor: 'purple.50',
-    },
   },
   icon: {
     color: 'gray.100',
