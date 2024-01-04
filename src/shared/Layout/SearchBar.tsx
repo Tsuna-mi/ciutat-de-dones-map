@@ -22,15 +22,6 @@ export const SearchBar = () => {
           borderRadius={5}
           border="none"
           placeholder="Puedes buscar por nombre, fecha..."
-          sx={{
-            _focusWithin: {
-              ringColor: '#C3A3C9',
-              ring: '1px',
-              ringOffset: '1px',
-              ringOffsetColor: 'purple.100',
-              borderColor: 'purple.50',
-            },
-          }}
         />
         <InputRightAddon p={0} height="45px" border="none">
           <Button
