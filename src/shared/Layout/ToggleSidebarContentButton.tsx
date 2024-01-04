@@ -27,9 +27,9 @@ export function ToggleSidebarContentButton({
         >
           <Center>
             {isOpen ? (
-              <ChevronDownIcon mt="-10px" w={14} h={14} color="accent" />
-            ) : (
               <ChevronUpIcon mt="-10px" w={14} h={14} color="accent" />
+            ) : (
+              <ChevronDownIcon mt="-10px" w={14} h={14} color="accent" />
             )}
           </Center>
         </Box>
