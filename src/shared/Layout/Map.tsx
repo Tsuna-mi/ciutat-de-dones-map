@@ -10,15 +10,15 @@ const DownloadIcon = () => (
   <Icon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" fill="none">
     <path
       stroke="currentColor"
-      stroke-linecap="round"
-      stroke-width="3"
+      strokeLinecap="round"
+      strokeWidth="3"
       d="M9.666 28.333h10.667c3.771 0 5.657 0 6.829-1.171 1.171-1.172 1.171-3.057 1.171-6.829V19c0-3.771 0-5.657-1.171-6.828-1.025-1.025-2.595-1.153-5.495-1.17m-13.334 0c-2.9.017-4.47.145-5.495 1.17C1.667 13.343 1.667 15.229 1.667 19v1.333c0 3.772 0 5.657 1.171 6.829.4.4.883.663 1.495.837"
     />
     <path
       stroke="currentColor"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      stroke-width="3"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="3"
       d="M15 1.667V19m0 0-4-4.667M15 19l4-4.667"
     />
   </Icon>
