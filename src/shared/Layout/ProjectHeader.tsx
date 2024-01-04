@@ -22,6 +22,20 @@ export function ProjectHeader({
 }) {
   return (
     <>
+      <Heading
+        as="h1"
+        size="3xl"
+        color="accent"
+        textTransform={'uppercase'}
+        lineHeight={'.75'}
+        mt="10"
+      >
+        Ciutat
+        <br />
+        de
+        <br />
+        dones
+      </Heading>
       <motion.section
         {...getDisclosureProps()}
         hidden={hidden}
@@ -33,19 +47,6 @@ export function ProjectHeader({
           opacity: isOpen ? 1 : 0,
         }}
       >
-        <Heading
-          as="h1"
-          size="3xl"
-          color="accent"
-          textTransform={'uppercase'}
-          lineHeight={'.75'}
-        >
-          Ciutat
-          <br />
-          de
-          <br />
-          dones
-        </Heading>
         <Text
           margin={'25px 0'}
           width={'90%'}
