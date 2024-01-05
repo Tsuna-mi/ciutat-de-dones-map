@@ -60,6 +60,9 @@ export function HomePage() {
         direction: valueDirection as 'asc' | 'desc',
       })
     );
+    setValueSort('alphabetic');
+    setValueDirection('asc');
+    setLocalSortingAndDirection({ ...sortingAndDirection });
     navigate('/results');
   };
 
