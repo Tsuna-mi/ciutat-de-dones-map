@@ -31,6 +31,8 @@ export const filterByStringInArrayField = (
   if (filterString === 'allSubwayLines' || filterString === 'allCategories')
     return array;
   return array.filter(
-    (item) => Array.isArray(item[field]) && item[field].includes(filterString)
+    (item) =>
+      Array.isArray(item[field]) &&
+      (item[field] as (SubwayLine | Category)[]).includes(filterString)
   );
 };
