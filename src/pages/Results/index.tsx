@@ -32,6 +32,7 @@ import { sortArrayByField, filterByStringInArrayField } from 'utils/general';
 
 export function ResultsPage() {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const { getButtonProps, getDisclosureProps, isOpen, onToggle } =
     useDisclosure({ defaultIsOpen: false });
   const { sorting, direction, subwayLine, category }: SortingAndDirection =
@@ -40,7 +41,6 @@ export function ResultsPage() {
   const [hidden, setHidden] = useState(!isOpen);
   const asideHeight = 220;
   const { data: allBios = [], isLoading = Boolean } = useGetAllBiosQuery();
-  const navigate = useNavigate();
   const [bios, setBios] = useState<Biography[]>([]);
 
   useEffect(() => {

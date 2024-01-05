@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import {
   Box,
   Button,
@@ -13,13 +13,36 @@ import {
 } from '@chakra-ui/react';
 import { ChevronLeftIcon, ChevronRightIcon } from '@chakra-ui/icons';
 import { useGetAllBiosQuery } from 'redux/api/biosAPI';
+import { findPosition } from 'utils/general';
 import { Page } from 'shared/Layout/Page';
 import { BackButton } from 'shared/Layout/BackButton';
 
 export function DetailPage() {
+  const navigate = useNavigate();
   const { id } = useParams();
   const { data: bios = [] } = useGetAllBiosQuery();
   const selectedBio = bios.find((bio) => bio.id.toString() === id);
+  const biosIdsArray = [1, 5, 6, 9, 11];
+
+  const currentPosition: number | undefined = id
+    ? findPosition(biosIdsArray, parseInt(id))
+    : undefined;
+
+  const nextPosition: number | null =
+    currentPosition !== undefined && currentPosition + 1 < biosIdsArray.length
+      ? currentPosition + 1
+      : null;
+
+  const previousPosition: number | null =
+    currentPosition && currentPosition - 1 >= 0 ? currentPosition - 1 : null;
+
+  const handleGoToPrevious = () =>
+    previousPosition !== null &&
+    navigate(`/detail/${biosIdsArray[previousPosition]}`);
+
+  const handleGoToNext = () =>
+    nextPosition !== null && navigate(`/detail/${biosIdsArray[nextPosition]}`);
+
   return selectedBio?.id ? (
     <Page>
       <Flex>
@@ -34,10 +57,14 @@ export function DetailPage() {
                 size="xl"
                 aria-label="Biografía Anterior"
                 icon={<ChevronLeftIcon />}
+                onClick={handleGoToPrevious}
               />
               <Text as="span" color="gray5" lineHeight="2.7rem">
                 {/* {'currentPage'} / {'totalPages'} */}
-                {'28'} / {'130'}
+                {typeof currentPosition === 'number'
+                  ? currentPosition + 1
+                  : '--'}
+                / {biosIdsArray.length}
               </Text>
               {/* <Button onClick={'setNextPage'} isDisabled={'!nextEnabled'}> */}
               <IconButton
@@ -45,6 +72,7 @@ export function DetailPage() {
                 size="xl"
                 aria-label="Biografía Siguiente"
                 icon={<ChevronRightIcon />}
+                onClick={handleGoToNext}
               />
             </Center>
           </ButtonGroup>
@@ -122,6 +150,8 @@ export function DetailPage() {
           fontSize="lg"
           variant="normal"
           leftIcon={<ChevronLeftIcon w={8} h={8} />}
+          isDisabled={previousPosition === null}
+          onClick={handleGoToPrevious}
         >
           Anterior
         </Button>
@@ -131,6 +161,8 @@ export function DetailPage() {
           fontSize="lg"
           variant="normal"
           rightIcon={<ChevronRightIcon w={8} h={8} />}
+          isDisabled={!nextPosition}
+          onClick={handleGoToNext}
         >
           Siguiente
         </Button>

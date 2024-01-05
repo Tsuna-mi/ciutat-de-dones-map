@@ -35,3 +35,12 @@ export const filterByStringInArrayField = (
       (item[field] as (SubwayLine | Category)[]).includes(filterString)
   );
 };
+
+export const findPosition = (array: Number[], id: Number) => {
+  if (!id) return;
+  const position = array.indexOf(id);
+  if (position === -1) {
+    throw new Error('El id proporcionado no existe en el array.');
+  }
+  return position;
+};
