@@ -1,3 +1,4 @@
+import { useParams } from 'react-router-dom';
 import {
   Box,
   Button,
@@ -11,11 +12,15 @@ import {
   Text,
 } from '@chakra-ui/react';
 import { ChevronLeftIcon, ChevronRightIcon } from '@chakra-ui/icons';
+import { useGetAllBiosQuery } from 'redux/api/biosAPI';
 import { Page } from 'shared/Layout/Page';
 import { BackButton } from 'shared/Layout/BackButton';
 
 export function DetailPage() {
-  return (
+  const { id } = useParams();
+  const { data: bios = [] } = useGetAllBiosQuery();
+  const selectedBio = bios.find((bio) => bio.id.toString() === id);
+  return selectedBio?.id ? (
     <Page>
       <Flex>
         <BackButton />
@@ -51,13 +56,17 @@ export function DetailPage() {
           marginTop: '75px',
         }}
       >
-        <Image
-          src={''}
-          alt={''}
-          style={{
-            marginBottom: '40px',
-          }}
-        />
+        {selectedBio.image ? (
+          <Image
+            src={selectedBio.image}
+            alt={selectedBio.alt}
+            style={{
+              marginBottom: '40px',
+            }}
+          />
+        ) : (
+          <></>
+        )}
         <Heading
           as="h2"
           fontFamily={'Source Sans Pro'}
@@ -67,7 +76,7 @@ export function DetailPage() {
             whiteSpace: 'preserve',
           }}
         >
-          Valerie Powles
+          {selectedBio.name}
         </Heading>
         <Text
           fontFamily={'Source Sans Pro'}
@@ -78,14 +87,14 @@ export function DetailPage() {
             whiteSpace: 'preserve',
           }}
         >
-          Birmingham, 1950 - Barcelona, 2011
+          {selectedBio.dates}
         </Text>
         <Box>
           <Text
             fontSize={'18px'}
             style={{
               maxHeight: '430px',
-              margin: '60px 0 60px',
+              margin: '60px 5px 60px 0',
               wordWrap: 'break-word',
               overflowY: 'auto',
               whiteSpace: 'preserve',
@@ -103,21 +112,7 @@ export function DetailPage() {
               },
             }}
           >
-            Historiadora y activista por la conservación del patrimonio y la
-            memoria, cofundó el Centro de Investigación Histórica del Poble-sec,
-            el barrio donde vivió. Compaginó la docencia con el trabajo
-            reivindicativo, defendiendo la conservación de El Molino cuando el
-            inversor que compró el edificio se deshizo de la decoración
-            modernista diseñada por M. J. Raspall. Se movilizó con el
-            vecindario, consiguieron recuperar parte del patrimonio e iniciaron
-            una intensa campaña para salvar la sala. Historiadora y activista
-            por la conservación del patrimonio y la memoria, cofundó el Centro
-            de Investigación Histórica del Poble-sec, el barrio donde vivió.
-            Compaginó la docencia con el trabajo reivindicativo, defendiendo la
-            conservación de El Molino cuando el inversor que compró el edificio
-            se deshizo de la decoración modernista diseñada por M. J. Raspall.
-            Se movilizó con el vecindario, consiguieron recuperar parte del
-            patrimonio e iniciaron una intensa campaña para salvar la sala.
+            {selectedBio.description}
           </Text>
         </Box>
       </Box>
@@ -141,6 +136,8 @@ export function DetailPage() {
         </Button>
       </Flex>
     </Page>
+  ) : (
+    <></>
   );
 }
 
