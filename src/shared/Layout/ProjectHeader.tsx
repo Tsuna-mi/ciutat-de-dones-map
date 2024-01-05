@@ -28,13 +28,15 @@ export function ProjectHeader({
         color="accent"
         textTransform={'uppercase'}
         lineHeight={'.75'}
-        mt="10"
+        mt="5"
       >
-        Ciutat
-        <br />
-        de
-        <br />
-        dones
+        <Link href="/">
+          Ciutat
+          <br />
+          de
+          <br />
+          dones
+        </Link>
       </Heading>
       <motion.section
         {...getDisclosureProps()}
