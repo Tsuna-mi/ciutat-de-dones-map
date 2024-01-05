@@ -44,7 +44,7 @@ export function ResultsPage() {
   const [bios, setBios] = useState<Biography[]>([]);
 
   useEffect(() => {
-    if (allBios) {
+    if (allBios.length > 0) {
       const directionType: 'asc' | 'desc' =
         direction === 'asc' ? 'asc' : 'desc';
       const subwayLineType: SubwayLine = subwayLine as SubwayLine;
