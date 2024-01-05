@@ -5,6 +5,7 @@ import { SortingAndDirection } from 'app/types';
 export interface BioState {
   selectedBioId: number | null;
   sortingAndDirection: SortingAndDirection;
+  biosIdsArray: number[];
 }
 
 const initialState: BioState = {
@@ -15,6 +16,7 @@ const initialState: BioState = {
     subwayLine: 'all',
     category: 'all',
   },
+  biosIdsArray: [],
 };
 
 export const biosSlice = createSlice({
@@ -30,10 +32,14 @@ export const biosSlice = createSlice({
     ) => {
       state.sortingAndDirection = action.payload;
     },
+    setBiosIdsArray: (state, action: PayloadAction<number[]>) => {
+      state.biosIdsArray = action.payload;
+    },
   },
 });
 
 export const storedBios = (state: RootState): BioState => state.bios;
 
-export const { setBioId, setSortingAndDirection } = biosSlice.actions;
+export const { setBioId, setSortingAndDirection, setBiosIdsArray } =
+  biosSlice.actions;
 export default biosSlice.reducer;

@@ -12,6 +12,7 @@ import {
   Text,
 } from '@chakra-ui/react';
 import { ChevronLeftIcon, ChevronRightIcon } from '@chakra-ui/icons';
+import { useAppSelector } from 'app/hooks';
 import { useGetAllBiosQuery } from 'redux/api/biosAPI';
 import { findPosition } from 'utils/general';
 import { Page } from 'shared/Layout/Page';
@@ -22,7 +23,10 @@ export function DetailPage() {
   const { id } = useParams();
   const { data: bios = [] } = useGetAllBiosQuery();
   const selectedBio = bios.find((bio) => bio.id.toString() === id);
-  const biosIdsArray = [1, 5, 6, 9, 11];
+
+  const biosIdsArray: number[] = useAppSelector(
+    (state) => state.bios.biosIdsArray
+  );
 
   const currentPosition: number | undefined = id
     ? findPosition(biosIdsArray, parseInt(id))

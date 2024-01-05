@@ -23,7 +23,7 @@ import {
   SubwayLine,
   Category,
 } from 'app/types';
-import { setBioId } from 'redux/biosSlice';
+import { setBioId, setBiosIdsArray } from 'redux/biosSlice';
 import { useGetAllBiosQuery } from 'redux/api/biosAPI';
 import { Page } from 'shared/Layout/Page';
 import { ProjectHeader } from 'shared/Layout/ProjectHeader';
@@ -70,6 +70,12 @@ export function ResultsPage() {
       setBios(filteredByCategory);
     }
   }, [allBios, sorting, direction, subwayLine, category]);
+
+  useEffect(() => {
+    if (bios.length > 0) {
+      dispatch(setBiosIdsArray(bios.map((bio) => bio.id)));
+    }
+  }, [bios, dispatch]);
 
   return (
     <Page>
