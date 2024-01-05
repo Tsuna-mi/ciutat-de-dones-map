@@ -36,7 +36,7 @@ export const filterByStringInArrayField = (
   );
 };
 
-export const findPosition = (array: Number[], id: Number) => {
+export const findPosition = (array: number[], id: number) => {
   if (!id) return;
   const position = array.indexOf(id);
   if (position === -1) {
