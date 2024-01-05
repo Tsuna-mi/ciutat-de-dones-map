@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   Box,
   Center,
@@ -6,21 +7,69 @@ import {
   Flex,
   Heading,
   Image,
+  LinkBox,
+  LinkOverlay,
   List,
   ListItem,
   Spacer,
+  Spinner,
   Text,
   useDisclosure,
 } from '@chakra-ui/react';
+import { useAppSelector, useAppDispatch } from 'app/hooks';
+import {
+  Biography,
+  SortingAndDirection,
+  SubwayLine,
+  Category,
+} from 'app/types';
+import { setBioId } from 'redux/biosSlice';
+import { useGetAllBiosQuery } from 'redux/api/biosAPI';
 import { Page } from 'shared/Layout/Page';
 import { ProjectHeader } from 'shared/Layout/ProjectHeader';
 import { BackButton } from 'shared/Layout/BackButton';
+import { sortArrayByField, filterByStringInArrayField } from 'utils/general';
 
 export function ResultsPage() {
+  const dispatch = useAppDispatch();
   const { getButtonProps, getDisclosureProps, isOpen, onToggle } =
-    useDisclosure({ defaultIsOpen: true });
+    useDisclosure({ defaultIsOpen: false });
+  const { sorting, direction, subwayLine, category }: SortingAndDirection =
+    useAppSelector((state) => state.bios.sortingAndDirection);
+
   const [hidden, setHidden] = useState(!isOpen);
-  const asideHeight = 380;
+  const asideHeight = 220;
+  const { data: allBios = [], isLoading = Boolean } = useGetAllBiosQuery();
+  const navigate = useNavigate();
+  const [bios, setBios] = useState<Biography[]>([]);
+
+  useEffect(() => {
+    if (allBios) {
+      const directionType: 'asc' | 'desc' =
+        direction === 'asc' ? 'asc' : 'desc';
+      const subwayLineType: SubwayLine = subwayLine as SubwayLine;
+      const categoryType: Category = category as Category;
+
+      const sorted = sortArrayByField(
+        allBios,
+        sorting === 'birthDate' ? sorting : 'name',
+        directionType
+      );
+
+      const filteredByLine = filterByStringInArrayField(
+        sorted,
+        'subwayLine',
+        subwayLineType
+      );
+
+      const filteredByCategory = filterByStringInArrayField(
+        filteredByLine,
+        'category',
+        categoryType
+      );
+      setBios(filteredByCategory);
+    }
+  }, [allBios, sorting, direction, subwayLine, category]);
 
   return (
     <Page>
@@ -30,7 +79,7 @@ export function ResultsPage() {
         <Box height="45px" width="100px" bg="white" borderRadius={'6'}>
           <Center>
             <Text as="span" color="gray5" lineHeight="2.7rem">
-              {'28'}
+              {bios.length}
             </Text>
           </Center>
         </Box>
@@ -47,7 +96,7 @@ export function ResultsPage() {
       <List
         style={{
           maxHeight: isOpen ? '350px' : '800px', //
-          margin: '30px 0',
+          margin: '10px 0',
           wordWrap: 'break-word',
           overflowY: 'auto',
           whiteSpace: 'preserve',
@@ -65,261 +114,67 @@ export function ResultsPage() {
           },
         }}
       >
-        <ListItem>
-          <Box as="article">
-            <Flex>
-              <Box>
-                <Heading
-                  as="h2"
-                  fontFamily={'Source Sans Pro'}
-                  fontSize="24px"
-                  style={{
-                    whiteSpace: 'preserve',
-                  }}
-                >
-                  Valerie Powles
-                </Heading>
-                <Text
-                  fontFamily={'Source Sans Pro'}
-                  fontWeight={'100'}
-                  fontSize={'20px'}
-                  lineHeight={'1'}
-                  style={{
-                    whiteSpace: 'preserve',
-                  }}
-                >
-                  Birmingham, 1950 - Barcelona, 2011
-                </Text>
-              </Box>
-              <Image src={''} alt={''} />
-            </Flex>
+        {isLoading ? (
+          <Center>
+            <Spinner color="accent" />
+          </Center>
+        ) : (
+          bios.map((bio) => (
+            <ListItem key={bio.id}>
+              <LinkBox as="article">
+                <Flex>
+                  <Box>
+                    <LinkOverlay
+                      onClick={() => {
+                        dispatch(setBioId(bio.id));
+                        navigate(`/detail/${bio.id}`);
+                      }}
+                    >
+                      <Heading
+                        as="h2"
+                        fontFamily={'Source Sans Pro'}
+                        fontSize="24px"
+                        style={{
+                          whiteSpace: 'preserve',
+                          marginTop: '30px',
+                        }}
+                      >
+                        {bio.name}
+                      </Heading>
+                    </LinkOverlay>
+                    <Text
+                      fontFamily={'Source Sans Pro'}
+                      fontWeight={'100'}
+                      fontSize={'20px'}
+                      lineHeight={'1'}
+                      style={{
+                        whiteSpace: 'preserve',
+                      }}
+                    >
+                      {bio.dates}
+                    </Text>
+                  </Box>
+                  {bio.image ? <Image src={bio.image} alt={bio.alt} /> : <></>}
+                </Flex>
 
-            <Box>
-              <Text
-                fontSize={'18px'}
-                style={{
-                  maxHeight: '80px',
-                  margin: '15px 0 20px',
-                  whiteSpace: 'preserve',
-                  overflow: 'hidden',
-                }}
-              >
-                Historiadora y activista por la conservación del patrimonio y la
-                memoria, cofundó el Centro de Investigación Histórica del
-                Poble-sec, el barrio donde vivió. Compaginó la docencia con el
-                trabajo reivindicativo, defendiendo la conservación de El Molino
-                cuando el inversor que compró el edificio se deshizo de la
-                decoración modernista diseñada por M. J. Raspall. Se movilizó
-                con el vecindario, consiguieron recuperar parte del patrimonio e
-                iniciaron una intensa campaña para salvar la sala. Historiadora
-                y activista por la conservación del patrimonio y la memoria,
-                cofundó el Centro de Investigación Histórica del Poble-sec, el
-                barrio donde vivió. Compaginó la docencia con el trabajo
-                reivindicativo, defendiendo la conservación de El Molino cuando
-                el inversor que compró el edificio se deshizo de la decoración
-                modernista diseñada por M. J. Raspall. Se movilizó con el
-                vecindario, consiguieron recuperar parte del patrimonio e
-                iniciaron una intensa campaña para salvar la sala.
-              </Text>
-            </Box>
-          </Box>
-          <Divider bg="white" />
-        </ListItem>
-        <ListItem>
-          <Box
-            as="article"
-            style={{
-              marginTop: '40px',
-            }}
-          >
-            <Flex>
-              <Box>
-                <Heading
-                  as="h2"
-                  fontFamily={'Source Sans Pro'}
-                  fontSize="24px"
-                  style={{
-                    whiteSpace: 'preserve',
-                  }}
-                >
-                  Valerie Powles
-                </Heading>
-                <Text
-                  fontFamily={'Source Sans Pro'}
-                  fontWeight={'100'}
-                  fontSize={'20px'}
-                  lineHeight={'1'}
-                  style={{
-                    whiteSpace: 'preserve',
-                  }}
-                >
-                  Birmingham, 1950 - Barcelona, 2011
-                </Text>
-              </Box>
-              <Image src={''} alt={''} />
-            </Flex>
-
-            <Box>
-              <Text
-                fontSize={'18px'}
-                style={{
-                  maxHeight: '80px',
-                  margin: '15px 0 20px',
-                  whiteSpace: 'preserve',
-                  overflow: 'hidden',
-                }}
-              >
-                Historiadora y activista por la conservación del patrimonio y la
-                memoria, cofundó el Centro de Investigación Histórica del
-                Poble-sec, el barrio donde vivió. Compaginó la docencia con el
-                trabajo reivindicativo, defendiendo la conservación de El Molino
-                cuando el inversor que compró el edificio se deshizo de la
-                decoración modernista diseñada por M. J. Raspall. Se movilizó
-                con el vecindario, consiguieron recuperar parte del patrimonio e
-                iniciaron una intensa campaña para salvar la sala. Historiadora
-                y activista por la conservación del patrimonio y la memoria,
-                cofundó el Centro de Investigación Histórica del Poble-sec, el
-                barrio donde vivió. Compaginó la docencia con el trabajo
-                reivindicativo, defendiendo la conservación de El Molino cuando
-                el inversor que compró el edificio se deshizo de la decoración
-                modernista diseñada por M. J. Raspall. Se movilizó con el
-                vecindario, consiguieron recuperar parte del patrimonio e
-                iniciaron una intensa campaña para salvar la sala.
-              </Text>
-            </Box>
-          </Box>
-          <Divider bg="white" />
-        </ListItem>
-        <ListItem>
-          <Box
-            as="article"
-            style={{
-              marginTop: '40px',
-            }}
-          >
-            <Flex>
-              <Box>
-                <Heading
-                  as="h2"
-                  fontFamily={'Source Sans Pro'}
-                  fontSize="24px"
-                  style={{
-                    whiteSpace: 'preserve',
-                  }}
-                >
-                  Valerie Powles
-                </Heading>
-                <Text
-                  fontFamily={'Source Sans Pro'}
-                  fontWeight={'100'}
-                  fontSize={'20px'}
-                  lineHeight={'1'}
-                  style={{
-                    whiteSpace: 'preserve',
-                  }}
-                >
-                  Birmingham, 1950 - Barcelona, 2011
-                </Text>
-              </Box>
-              <Image src={''} alt={''} />
-            </Flex>
-
-            <Box>
-              <Text
-                fontSize={'18px'}
-                style={{
-                  maxHeight: '80px',
-                  margin: '15px 0 20px',
-                  whiteSpace: 'preserve',
-                  overflow: 'hidden',
-                }}
-              >
-                Historiadora y activista por la conservación del patrimonio y la
-                memoria, cofundó el Centro de Investigación Histórica del
-                Poble-sec, el barrio donde vivió. Compaginó la docencia con el
-                trabajo reivindicativo, defendiendo la conservación de El Molino
-                cuando el inversor que compró el edificio se deshizo de la
-                decoración modernista diseñada por M. J. Raspall. Se movilizó
-                con el vecindario, consiguieron recuperar parte del patrimonio e
-                iniciaron una intensa campaña para salvar la sala. Historiadora
-                y activista por la conservación del patrimonio y la memoria,
-                cofundó el Centro de Investigación Histórica del Poble-sec, el
-                barrio donde vivió. Compaginó la docencia con el trabajo
-                reivindicativo, defendiendo la conservación de El Molino cuando
-                el inversor que compró el edificio se deshizo de la decoración
-                modernista diseñada por M. J. Raspall. Se movilizó con el
-                vecindario, consiguieron recuperar parte del patrimonio e
-                iniciaron una intensa campaña para salvar la sala.
-              </Text>
-            </Box>
-          </Box>
-          <Divider bg="white" />
-        </ListItem>
-        <ListItem>
-          <Box
-            as="article"
-            style={{
-              marginTop: '40px',
-            }}
-          >
-            <Flex>
-              <Box>
-                <Heading
-                  as="h2"
-                  fontFamily={'Source Sans Pro'}
-                  fontSize="24px"
-                  style={{
-                    whiteSpace: 'preserve',
-                  }}
-                >
-                  Valerie Powles
-                </Heading>
-                <Text
-                  fontFamily={'Source Sans Pro'}
-                  fontWeight={'100'}
-                  fontSize={'20px'}
-                  lineHeight={'1'}
-                  style={{
-                    whiteSpace: 'preserve',
-                  }}
-                >
-                  Birmingham, 1950 - Barcelona, 2011
-                </Text>
-              </Box>
-              <Image src={''} alt={''} />
-            </Flex>
-
-            <Box>
-              <Text
-                fontSize={'18px'}
-                style={{
-                  maxHeight: '80px',
-                  margin: '15px 0 20px',
-                  whiteSpace: 'preserve',
-                  overflow: 'hidden',
-                }}
-              >
-                Historiadora y activista por la conservación del patrimonio y la
-                memoria, cofundó el Centro de Investigación Histórica del
-                Poble-sec, el barrio donde vivió. Compaginó la docencia con el
-                trabajo reivindicativo, defendiendo la conservación de El Molino
-                cuando el inversor que compró el edificio se deshizo de la
-                decoración modernista diseñada por M. J. Raspall. Se movilizó
-                con el vecindario, consiguieron recuperar parte del patrimonio e
-                iniciaron una intensa campaña para salvar la sala. Historiadora
-                y activista por la conservación del patrimonio y la memoria,
-                cofundó el Centro de Investigación Histórica del Poble-sec, el
-                barrio donde vivió. Compaginó la docencia con el trabajo
-                reivindicativo, defendiendo la conservación de El Molino cuando
-                el inversor que compró el edificio se deshizo de la decoración
-                modernista diseñada por M. J. Raspall. Se movilizó con el
-                vecindario, consiguieron recuperar parte del patrimonio e
-                iniciaron una intensa campaña para salvar la sala.
-              </Text>
-            </Box>
-          </Box>
-          <Divider bg="white" />
-        </ListItem>
+                <Box>
+                  <Text
+                    fontSize={'18px'}
+                    style={{
+                      maxHeight: '80px',
+                      margin: '15px 5px 20px 0',
+                      whiteSpace: 'preserve',
+                      overflow: 'hidden',
+                    }}
+                  >
+                    {bio.description}
+                  </Text>
+                </Box>
+              </LinkBox>
+              <Divider bg="white" />
+            </ListItem>
+          ))
+        )}
       </List>
     </Page>
   );
