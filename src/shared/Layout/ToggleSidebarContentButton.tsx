@@ -11,7 +11,7 @@ export function ToggleSidebarContentButton({
   return (
     <>
       <Divider bg="white" marginTop="40px" />
-      <Center h="45px" mt="-2px">
+      <Center h="45px" mt="-2px" marginBottom="20px">
         <Box
           as="button"
           aria-label="Mostrar/Ocultar la información del Proyecto"
