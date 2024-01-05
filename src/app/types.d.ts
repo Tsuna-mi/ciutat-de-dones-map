@@ -20,7 +20,7 @@ export type SortingAndDirection = {
 };
 
 export type Category =
-  | 'allCategories'
+  | 'all'
   | 'activism'
   | 'health'
   | 'sports'
@@ -30,7 +30,7 @@ export type Category =
   | 'urbanism';
 
 export type SubwayLine =
-  | 'allSubwayLines'
+  | 'all'
   | 'l1'
   | 'l2'
   | 'l3'

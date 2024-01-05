@@ -28,8 +28,7 @@ export const filterByStringInArrayField = (
   field: 'category' | 'subwayLine',
   filterString: SubwayLine | Category
 ): Biography[] => {
-  if (filterString === 'allSubwayLines' || filterString === 'allCategories')
-    return array;
+  if (filterString === 'all') return array;
   return array.filter(
     (item) =>
       Array.isArray(item[field]) &&

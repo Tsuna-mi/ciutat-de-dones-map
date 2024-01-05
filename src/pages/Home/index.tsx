@@ -162,7 +162,7 @@ export function HomePage() {
                 placeholder="Selecciona una línea de Metro"
                 onChange={handleChange}
               >
-                <option value="allSubwayLines">Todas</option>
+                <option value="all">Todas</option>
                 <option value="l1">Línea 1 (L1) - Roja</option>
                 <option value="l2">Línea 2 (L2) - Lila</option>
                 <option value="l3">Línea 3 (L3) - Verde</option>
@@ -187,7 +187,7 @@ export function HomePage() {
                 placeholder="Selecciona una categoría"
                 onChange={handleChange}
               >
-                <option value="allCategories">Todas</option>
+                <option value="all">Todas</option>
                 <option value="activism">Activismo y cambio social</option>
                 <option value="health">Salud y Bienestar</option>
                 <option value="sports">Deporte y Representación</option>
