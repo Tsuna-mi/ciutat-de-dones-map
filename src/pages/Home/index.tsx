@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, ChangeEvent } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   Button,
   Center,
@@ -13,17 +14,55 @@ import {
   VStack,
   useDisclosure,
 } from '@chakra-ui/react';
+import { useAppSelector, useAppDispatch } from 'app/hooks';
+import { setSortingAndDirection, storedBios } from 'redux/biosSlice';
 import { Page } from 'shared/Layout/Page';
 import { ProjectHeader } from 'shared/Layout/ProjectHeader';
 import { SearchBar } from 'shared/Layout/SearchBar';
+
 export function HomePage() {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const asideHeight = 220;
+
+  const { sortingAndDirection } = useAppSelector(storedBios);
   const { getButtonProps, getDisclosureProps, isOpen, onToggle } =
     useDisclosure({ defaultIsOpen: true });
-  const [hidden, setHidden] = useState(!isOpen);
 
-  const [valueSort, setValueSort] = useState('1');
-  const [valueDirection, setValueDirection] = useState('1');
-  const asideHeight = 380;
+  const [hidden, setHidden] = useState(!isOpen);
+  const [localSortingAndDirection, setLocalSortingAndDirection] =
+    useState(sortingAndDirection);
+  const [valueSort, setValueSort] = useState('alphabetic');
+  const [valueDirection, setValueDirection] = useState('asc');
+
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
+    if (!e.target) return;
+    const { name, value } = e.target;
+    if (name === 'sorting') {
+      setValueSort(value);
+    } else if (name === 'direction') {
+      setValueDirection(value);
+    } else {
+      setLocalSortingAndDirection({
+        ...localSortingAndDirection,
+        [name]: value,
+      });
+    }
+  };
+
+  const handleApplyClick = () => {
+    dispatch(
+      setSortingAndDirection({
+        ...localSortingAndDirection,
+        sorting: valueSort,
+        direction: valueDirection as 'asc' | 'desc',
+      })
+    );
+    navigate('/results');
+  };
+
   return (
     <Page>
       <ProjectHeader
@@ -44,24 +83,26 @@ export function HomePage() {
           <VStack>
             <RadioGroup
               colorScheme="white"
-              name="sort"
+              name="sorting"
               color="gray5"
-              onChange={setValueSort}
               value={valueSort}
+              onChange={setValueSort}
             >
               <Stack spacing={5} direction="row">
                 <Radio
-                  borderColor="secondary"
-                  defaultChecked
-                  value="alphabetic"
                   _before={{ background: 'secondary !important' }}
+                  borderColor="secondary"
+                  defaultChecked={true}
+                  onChange={handleChange}
+                  value="alphabetic"
                 >
                   Alfabético
                 </Radio>
                 <Radio
-                  borderColor="secondary"
-                  value="birthDate"
                   _before={{ background: 'secondary !important' }}
+                  borderColor="secondary"
+                  onChange={handleChange}
+                  value="birthDate"
                 >
                   Fecha Nacimiento
                 </Radio>
@@ -74,22 +115,24 @@ export function HomePage() {
               colorScheme="white"
               name="direction"
               color="gray5"
-              onChange={setValueDirection}
               value={valueDirection}
+              onChange={setValueDirection}
             >
               <Stack spacing={5} direction="row">
                 <Radio
-                  borderColor="secondary"
-                  defaultChecked
-                  value="asc"
                   _before={{ background: 'secondary !important' }}
+                  borderColor="secondary"
+                  defaultChecked={true}
+                  onChange={handleChange}
+                  value="asc"
                 >
                   Ascendente
                 </Radio>
                 <Radio
-                  borderColor="secondary"
-                  value="desc"
                   _before={{ background: 'secondary !important' }}
+                  borderColor="secondary"
+                  onChange={handleChange}
+                  value="desc"
                 >
                   Descendente
                 </Radio>
@@ -113,47 +156,58 @@ export function HomePage() {
             <FormControl>
               <FormLabel mb="0">Línea</FormLabel>
               <Select
+                name="subwayLine"
                 variant="selectPrimary"
                 minWidth="300px"
                 placeholder="Selecciona una línea de Metro"
+                onChange={handleChange}
               >
-                <option value="option1">Todas</option>
+                <option value="allSubwayLines">Todas</option>
                 <option value="l1">Línea 1 (L1) - Roja</option>
                 <option value="l2">Línea 2 (L2) - Lila</option>
                 <option value="l3">Línea 3 (L3) - Verde</option>
                 <option value="l4">Línea 4 (L4) - Amarilla</option>
                 <option value="l5">Línea 5 (L5) - Azul</option>
+                <option value="l6">Línea 6 (L6) - Violeta</option>
+                <option value="l7">Línea 7 (L7) - Marrón</option>
                 <option value="l9n">Línea 9 Norte (L9N) - Naranja</option>
                 <option value="l9s">Línea 9 Sur (L9S) - Naranja</option>
                 <option value="l10n">Línea 10 Norte (L10N) - Azul claro</option>
                 <option value="l10s">Línea 10 Sur (L10S) - Azul claro</option>
                 <option value="l11">Línea 11 (L11) - Verde claro</option>
-                <option value="l12">Línea 12 (L12) - Morado</option>
+                <option value="l12">Línea 12 (L12) - Violeta claro</option>
+                <option value="s1">Línea s1 (S1) - Naranja oscuro</option>
               </Select>
             </FormControl>
             <FormControl>
               <FormLabel mb="0">Categoría</FormLabel>
               <Select
+                name="category"
                 variant="selectPrimary"
                 placeholder="Selecciona una categoría"
+                onChange={handleChange}
               >
-                <option value="all">Todas</option>
+                <option value="allCategories">Todas</option>
                 <option value="activism">Activismo y cambio social</option>
                 <option value="health">Salud y Bienestar</option>
                 <option value="sports">Deporte y Representación</option>
                 <option value="culture">Cultura y Educación</option>
                 <option value="literature">Literatura y Periodismo</option>
-                <option value="womens_rights">Derechos de la Mujer</option>
-                <option value="social_science">
-                  Ciencias Sociales y Urbanismo
-                </option>
+                <option value="rights">Derechos de la Mujer</option>
+                <option value="urbanism">Ciencias Sociales y Urbanismo</option>
               </Select>
             </FormControl>
           </VStack>
         </Center>
       </FormControl>
       <Flex mt="25px" justifyContent="end">
-        <Button width="200px" fontSize="lg" variant="normal" size="lg">
+        <Button
+          width="200px"
+          fontSize="lg"
+          variant="normal"
+          size="lg"
+          onClick={handleApplyClick}
+        >
           APLICAR
         </Button>
       </Flex>
