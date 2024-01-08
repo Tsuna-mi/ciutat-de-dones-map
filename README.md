@@ -1,51 +1,44 @@
-# Barcelona. Ciutat de Dones - Interactive Map
+# Barcelona. Ciutat de Dones - Interactive Map 🗺️
 
-## Project Overview
+## Project Overview 🌟
 
-The "Barcelona. Ciutat de Dones" project aims to highlight the extraordinary contributions of numerous women who have left their mark on our city and society through various fields. This interactive map serves as a visual and educational tool, enabling users to explore the network of influential figures and learn more about their stories.
+The "Barcelona. Ciutat de Dones" project is part of a Final Year Project (TFG) that aims to highlight the extraordinary contributions of numerous women who have left their mark on Barcelona and society. This interactive map is a visual and educational tool, allowing users to explore the influential figures and learn more about their stories.
 
-## Features
+## Features 🛠️
 
-- **Interactive Map**: Clickable nodes representing individual women with contributions to Barcelona's heritage.
+- **Interactive Map**: Clickable nodes representing individual women who have contributed to Barcelona's heritage.
 - **Search Functionality**: Users can search for specific names or filter by categories.
 - **Accessibility Focused**: Implementing best practices to ensure the map is accessible to all users.
 
-## Technologies Used
+## Technologies Used 💻
 
-- [ReactJS](https://reactjs.org): For building the user interface.
-- [Vite](https://vitejs.dev): As a build tool for blazing fast development experience.
-- [Chakra UI](https://chakra-ui.com): For a modular and accessible component library.
-- \+ other smaller dependencies
+- [ReactJS](https://reactjs.org) for building the user interface.
+- [Vite](https://vitejs.dev) as a build tool for a blazing fast development experience.
+- [Chakra UI](https://chakra-ui.com) for a modular and accessible component library.
+- Plus, other smaller dependencies listed in `package.json`.
 
-## Getting Started
+## Getting Started 🚀
 
-To get a local copy up and running, follow these simple steps.
+To get a local copy up and running, follow these simple steps:
 
-1. Create the project.
-
-   ```bash
-   npx degit The24thDS/vite-reactts18-chakra-jest-husky my-app
+1. Clone the repo
+   ```sh
+   git clone https://github.com/Tsuna-mi/ciutat-de-dones-map.git
    ```
 
-2. Access the project directory.
+2. Install NPM packages.
 
-   ```bash
-   cd my-app
+   ```sh
+   pnpm install
    ```
 
-3. Initialize a git repository.
+3. Start the server to serve the api.
 
-   ```bash
-   git init
+   ```sh
+   pnpm run serve:api
    ```
 
-4. Install dependencies.
-
-   ```bash
-   pnpm
-   ```
-
-5. Serve with hot reload at http://localhost:5173.
+4. Serve with hot reload at http://localhost:5173.
    ```bash
    pnpm dev
    ```
@@ -56,37 +49,20 @@ To get a local copy up and running, follow these simple steps.
 - [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 - [vscode-styled-components](https://marketplace.visualstudio.com/items?itemName=jpoissonnier.vscode-styled-components)
 
-## Other commands
+## Available Scripts 📜
+In the project directory, you can run:
 
-### Lint commands
+- `pnpm run dev`: Runs the app in the development mode.
+- `pnpm run build`: Builds the app for production.
+- `pnpm run serve`: Preview the production build.
+- `pnpm run serve:api`: Runs the JSON server for the API.
+- `pnpm run lint`: Lints and formats your code.
+- `pnpm run format`: Formats your code using Prettier.
+- `pnpm run prepare`: Prepares husky for commit hooks.
+- `pnpm run cz`: Runs commitizen for commit conventions.
 
-- Run eslint
-  ```bash
-  pnpm lint
-  ```
-- Run eslint with fixing
-  ```bash
-  pnpm lint:fix
-  ```
 
-### Build commands
-
-```bash
-pnpm build
-```
-
-### Test commands
-
-- Run tests with coverage (will open the coverage if all tests succeed)
-  ```bash
-  pnpm test
-  ```
-- Watch tests
-  ```bash
-  pnpm test:watch
-  ```
-
-### Commit commands
+## Commit commands
 
 This project use [commitlint](https://github.com/conventional-changelog/commitlint) to ensure that commit messages are [conventional-changelog](https://github.com/conventional-changelog/commitlint/tree/master/@commitlint/config-conventional) compliants.
 
@@ -95,6 +71,12 @@ To help you build more efficient commit messages, you can use the [commitizen](h
 ```bash
 pnpm cz
 ```
+
+## Deployment 🌐
+
+This project has been deployed using Netlify and is accessible at [https://ciutat-de-dones.netlify.app](https://ciutat-de-dones.netlify.app).
+
+Happy Exploring! 🎉
 
 ## License
 
