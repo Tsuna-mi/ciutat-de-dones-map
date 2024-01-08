@@ -25,6 +25,7 @@ export const SearchBar = () => {
         />
         <InputRightAddon p={0} height="45px" border="none">
           <Button
+            aria-label="Buscar"
             bg="secondary"
             height="100%"
             maxWidth="45px"
@@ -36,7 +37,7 @@ export const SearchBar = () => {
           </Button>
         </InputRightAddon>
       </InputGroup>
-      <FormHelperText mt="1">
+      <FormHelperText mt="1" color="white">
         "Puedes buscar por nombre, fecha..."
       </FormHelperText>
     </FormControl>
