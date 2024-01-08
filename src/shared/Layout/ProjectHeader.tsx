@@ -63,32 +63,40 @@ export function ProjectHeader({
           ámbitos, han dejado huella en nuestra ciudad y sociedad.
         </Text>
         <Box>
-          <Flex justifyContent={'end'}>
-            <Link
-              fontFamily={'Kanit'}
-              fontWeight={'700'}
-              fontSize={'24px'}
-              textDecoration={'underline'}
-              href="https://ajuntament.barcelona.cat/dones/es/ciudad-de-mujeres/biografias"
-              isExternal
-            >
-              biografías
-              <ChevronRightIcon w={10} h={10} color="accent" />
-            </Link>
-          </Flex>
-          <Flex justifyContent={'end'}>
-            <Link
-              fontFamily={'Kanit'}
-              fontWeight={'700'}
-              fontSize={'24px'}
-              textDecoration={'underline'}
-              href="https://ajuntament.barcelona.cat/dones/es/ciudad-de-mujeres/el-proyecto"
-              isExternal
-            >
-              el proyecto
-              <ChevronRightIcon w={10} h={10} color="accent" />
-            </Link>
-          </Flex>
+          <nav>
+            <ul>
+              <li>
+                <Flex justifyContent={'end'}>
+                  <Link
+                    fontFamily={'Kanit'}
+                    fontWeight={'700'}
+                    fontSize={'24px'}
+                    textDecoration={'underline'}
+                    href="https://ajuntament.barcelona.cat/dones/es/ciudad-de-mujeres/biografias"
+                    isExternal
+                  >
+                    biografías
+                    <ChevronRightIcon w={10} h={10} color="accent" />
+                  </Link>
+                </Flex>
+              </li>
+              <li>
+                <Flex justifyContent={'end'}>
+                  <Link
+                    fontFamily={'Kanit'}
+                    fontWeight={'700'}
+                    fontSize={'24px'}
+                    textDecoration={'underline'}
+                    href="https://ajuntament.barcelona.cat/dones/es/ciudad-de-mujeres/el-proyecto"
+                    isExternal
+                  >
+                    el proyecto
+                    <ChevronRightIcon w={10} h={10} color="accent" />
+                  </Link>
+                </Flex>
+              </li>
+            </ul>
+          </nav>
         </Box>
       </motion.section>
       <ToggleSidebarContentButton onToggle={onToggle} isOpen={isOpen} />
