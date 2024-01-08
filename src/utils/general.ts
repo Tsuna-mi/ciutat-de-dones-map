@@ -1,9 +1,4 @@
-import { CreateStyled } from '@emotion/styled';
 import { Biography, SubwayLine, Category } from 'app/types';
-
-export const transientOptions: Parameters<CreateStyled>[1] = {
-  shouldForwardProp: (propName: string) => !propName.startsWith('$'),
-};
 
 export const sortArrayByField = (
   array: Biography[],
