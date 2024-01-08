@@ -103,7 +103,7 @@ export function DetailPage() {
           as="h2"
           fontFamily={'Source Sans Pro'}
           size="xl"
-          lineHeight={2}
+          lineHeight={1}
           style={{
             whiteSpace: 'preserve',
           }}
