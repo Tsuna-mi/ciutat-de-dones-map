@@ -79,9 +79,13 @@ const Controls = () => {
         color="yellow"
         onClick={() => resetTransform()}
       />
-      <a href="/ciutat_de_dones.pdf" download>
+      <a
+        href="/ciutat_de_dones.pdf"
+        download
+        aria-label="Descargar el mapa 'ciutat-de-dones' en pdf"
+      >
         <IconButton
-          aria-label="Descargar el mapa 'ciutat-de-dones' en pdf"
+          aria-label="Descargar"
           icon={<DownloadIcon />}
           variant="map"
           bg="secondary"
