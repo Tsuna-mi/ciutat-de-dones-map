@@ -41,13 +41,9 @@ export function ResultsPage() {
   const [hidden, setHidden] = useState(!isOpen);
   const asideHeight = 220;
   const { data: allBios = [], isLoading = Boolean } = useGetAllBiosQuery();
-  console.log('allBios: ', allBios);
   const [bios, setBios] = useState<Biography[]>([]);
-  console.log('bios: ', bios);
 
   useEffect(() => {
-    console.log('first useEffect');
-    console.log('allBios.length > 0: ', allBios.length > 0);
     if (allBios.length > 0) {
       const directionType: 'asc' | 'desc' =
         direction === 'asc' ? 'asc' : 'desc';
@@ -72,13 +68,10 @@ export function ResultsPage() {
         categoryType
       );
       setBios(filteredByCategory);
-      console.log('filteredByCategory: ', filteredByCategory);
     }
   }, [allBios, sorting, direction, subwayLine, category]);
 
   useEffect(() => {
-    console.log('second useEffect');
-
     if (bios.length > 0) {
       dispatch(setBiosIdsArray(bios.map((bio) => bio.id)));
     }
