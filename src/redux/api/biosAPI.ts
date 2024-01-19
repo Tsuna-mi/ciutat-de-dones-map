@@ -5,7 +5,7 @@ const hostname = window.location.hostname;
 const APIurl =
   hostname === 'localhost'
     ? 'http://localhost:8000'
-    : 'https://ciutat-de-dones.netlify.app/.netlify/functions/bios/bios';
+    : 'https://ciutat-de-dones.netlify.app/.netlify/functions/bios/bios/bios';
 
 type BiosResponse = Biography[];
 
