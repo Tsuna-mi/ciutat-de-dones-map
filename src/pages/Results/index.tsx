@@ -47,6 +47,7 @@ export function ResultsPage() {
 
   useEffect(() => {
     if (allBios.length > 0) {
+      console.log('first useEffect');
       const directionType: 'asc' | 'desc' =
         direction === 'asc' ? 'asc' : 'desc';
       const subwayLineType: SubwayLine = subwayLine as SubwayLine;
@@ -70,10 +71,13 @@ export function ResultsPage() {
         categoryType
       );
       setBios(filteredByCategory);
+      console.log('filteredByCategory: ', filteredByCategory);
     }
   }, [allBios, sorting, direction, subwayLine, category]);
 
   useEffect(() => {
+    console.log('second useEffect');
+
     if (bios.length > 0) {
       dispatch(setBiosIdsArray(bios.map((bio) => bio.id)));
     }
