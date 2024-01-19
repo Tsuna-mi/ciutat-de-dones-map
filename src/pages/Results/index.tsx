@@ -46,8 +46,9 @@ export function ResultsPage() {
   console.log('bios: ', bios);
 
   useEffect(() => {
+    console.log('first useEffect');
+    console.log('allBios.length > 0: ', allBios.length > 0);
     if (allBios.length > 0) {
-      console.log('first useEffect');
       const directionType: 'asc' | 'desc' =
         direction === 'asc' ? 'asc' : 'desc';
       const subwayLineType: SubwayLine = subwayLine as SubwayLine;
