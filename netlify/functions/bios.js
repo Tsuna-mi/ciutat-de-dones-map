@@ -3,7 +3,7 @@ exports.handler = async (event, context) => {
     const data = require('../../dist/data/bios.json');
     return {
       statusCode: 200,
-      body: data.toString(),
+      body: JSON.stringify(data),
       headers: {
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*',
