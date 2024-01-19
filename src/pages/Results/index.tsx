@@ -41,7 +41,9 @@ export function ResultsPage() {
   const [hidden, setHidden] = useState(!isOpen);
   const asideHeight = 220;
   const { data: allBios = [], isLoading = Boolean } = useGetAllBiosQuery();
+  console.log('allBios: ', allBios);
   const [bios, setBios] = useState<Biography[]>([]);
+  console.log('bios: ', bios);
 
   useEffect(() => {
     if (allBios.length > 0) {
