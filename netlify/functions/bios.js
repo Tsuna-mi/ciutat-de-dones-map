@@ -1,3 +1,4 @@
+import '../../dist/data/bios.json';
 const path = require("path");
 const fs = require("fs");
 
