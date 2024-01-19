@@ -10,9 +10,19 @@ exports.handler = async (event, context) => {
       body: data.toString(),
       headers: {
         'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Headers': 'Content-Type',
+        'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
       },
     };
   } catch (error) {
-    return { statusCode: 500, body: error.toString() };
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ msg: "Internal Server Error" }),
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+      },
+    };
   }
 };
