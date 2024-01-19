@@ -1,6 +1,6 @@
 exports.handler = async (event, context) => {
+  const data = require('../../dist/data/bios.json');
   try {
-    const data = require('../../dist/data/bios.json');
     return {
       statusCode: 200,
       body: JSON.stringify(data),
