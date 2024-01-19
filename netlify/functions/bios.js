@@ -1,10 +1,12 @@
 import '../../dist/data/bios.json';
-const path = require("path");
-const fs = require("fs");
+const { readFileSync } = require('fs');
+const path = require('path');
 
 exports.handler = async (event, context) => {
   try {
-    const data = fs.readFileSync(path.join(__dirname, '..', '..', 'dist', 'data', 'bios.json'));
+    const data = readFileSync(path.join(__dirname, '..', '..', 'dist', 'data', 'bios.json'));
+    console.log('Attempting to read file at:', path.join(__dirname, '..', '..', 'dist', 'data', 'bios.json'));
+    console.log('Current directory:', __dirname);
     return {
       statusCode: 200,
       body: data.toString(),
