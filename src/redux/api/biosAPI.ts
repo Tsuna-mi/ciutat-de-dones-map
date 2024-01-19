@@ -1,7 +1,11 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { Biography } from 'app/types';
 
-const APIurl = 'http://localhost:8000';
+const hostname = window.location.hostname;
+const APIurl =
+  hostname === 'localhost'
+    ? 'http://localhost:8000'
+    : 'https://ciutat-de-dones.netlify.app/.netlify/functions/bios';
 
 type BiosResponse = Biography[];
 
