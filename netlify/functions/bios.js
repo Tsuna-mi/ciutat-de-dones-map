@@ -2,10 +2,11 @@ const path = require("path");
 const fs = require("fs");
 
 exports.handler = async (event, context) => {
-  const pathToJson = path.resolve(path.join(__dirname, '..', '..', 'dist', 'data', 'bios.json'));
-  console.log(path.resolve(__dirname, '..', '..', 'dist', 'data', 'bios.json'));
-  console.log(fs.existsSync(pathToJson));
+  const pathToJson = path.resolve(path.join(__dirname, '..', 'dist', 'data', 'bios.json'));
+  console.log('path.resolve', path.resolve(__dirname, '..', 'dist', 'data', 'bios.json'));
+  console.log('fs.existsSync(pathToJson): ', fs.existsSync(pathToJson));
   const data = fs.readFileSync(pathToJson);
+  console.log('data: ', data);
 
   try {
     return {
