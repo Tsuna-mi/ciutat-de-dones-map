@@ -3,7 +3,6 @@ const path = require('path');
 
 exports.handler = async (event, context) => {
   try {
-    // Adjust the path according to your file structure
     const data = readFileSync(path.join(__dirname, '..', '..', 'dist', 'data', 'bios.json'));
     return {
       statusCode: 200,
@@ -11,14 +10,13 @@ exports.handler = async (event, context) => {
       headers: {
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Headers': 'Content-Type',
-        'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-      },
+      }
     };
   } catch (error) {
+    console.error('Error:', error);
     return {
       statusCode: 500,
-      body: JSON.stringify({ msg: "Internal Server Error" }),
+      body: JSON.stringify({ message: 'Internal Server Error' }),
       headers: {
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*',
