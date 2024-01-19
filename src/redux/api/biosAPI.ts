@@ -16,6 +16,7 @@ export const biosAPI = createApi({
   endpoints: (builder) => ({
     getAllBios: builder.query<BiosResponse, void>({
       query: () => '/bios',
+      transformResponse: (response: { bios: Biography[] }) => response.bios,
       providesTags: ['Bios'],
     }),
   }),
