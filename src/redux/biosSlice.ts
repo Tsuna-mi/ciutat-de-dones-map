@@ -1,11 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from 'app/store';
-import { SortingAndDirection } from 'app/types';
+import { Biography, SortingAndDirection } from 'app/types';
 
 export interface BioState {
   selectedBioId: number | null;
   sortingAndDirection: SortingAndDirection;
   biosIdsArray: number[];
+  biosSearched: Biography[];
 }
 
 const initialState: BioState = {
@@ -17,6 +18,7 @@ const initialState: BioState = {
     category: 'all',
   },
   biosIdsArray: [],
+  biosSearched: [],
 };
 
 export const biosSlice = createSlice({
@@ -35,11 +37,20 @@ export const biosSlice = createSlice({
     setBiosIdsArray: (state, action: PayloadAction<number[]>) => {
       state.biosIdsArray = action.payload;
     },
+    setSearchedBios: (state, action: PayloadAction<Biography[]>) => {
+      state.biosSearched = action.payload;
+    },
+    reset: () => initialState,
   },
 });
 
 export const storedBios = (state: RootState): BioState => state.bios;
 
-export const { setBioId, setSortingAndDirection, setBiosIdsArray } =
-  biosSlice.actions;
+export const {
+  setBioId,
+  setSortingAndDirection,
+  setBiosIdsArray,
+  setSearchedBios,
+  reset,
+} = biosSlice.actions;
 export default biosSlice.reducer;

@@ -1,4 +1,4 @@
-import { useState, ChangeEvent } from 'react';
+import { useEffect, useState, ChangeEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   Button,
@@ -15,7 +15,7 @@ import {
   useDisclosure,
 } from '@chakra-ui/react';
 import { useAppSelector, useAppDispatch } from 'app/hooks';
-import { setSortingAndDirection, storedBios } from 'redux/biosSlice';
+import { setSortingAndDirection, reset, storedBios } from 'redux/biosSlice';
 import { Page } from 'shared/Layout/Page';
 import { ProjectHeader } from 'shared/Layout/ProjectHeader';
 import { SearchBar } from 'shared/Layout/SearchBar';
@@ -34,6 +34,10 @@ export function HomePage() {
     useState(sortingAndDirection);
   const [valueSort, setValueSort] = useState('alphabetic');
   const [valueDirection, setValueDirection] = useState('asc');
+
+  useEffect(() => {
+    dispatch(reset());
+  }, [dispatch]);
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement>

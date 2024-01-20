@@ -38,13 +38,18 @@ export function ResultsPage() {
   const { sorting, direction, subwayLine, category }: SortingAndDirection =
     useAppSelector((state) => state.bios.sortingAndDirection);
 
+  const { biosSearched } = useAppSelector((state) => state.bios);
+
   const [hidden, setHidden] = useState(!isOpen);
   const asideHeight = 220;
   const { data: allBios = [], isLoading = Boolean } = useGetAllBiosQuery();
   const [bios, setBios] = useState<Biography[]>([]);
 
   useEffect(() => {
-    if (allBios.length > 0) {
+    if (biosSearched.length > 0) {
+      setBios(biosSearched);
+    }
+    if (allBios.length > 0 && biosSearched.length === 0) {
       const directionType: 'asc' | 'desc' =
         direction === 'asc' ? 'asc' : 'desc';
       const subwayLineType: SubwayLine = subwayLine as SubwayLine;
@@ -69,7 +74,7 @@ export function ResultsPage() {
       );
       setBios(filteredByCategory);
     }
-  }, [allBios, sorting, direction, subwayLine, category]);
+  }, [biosSearched, allBios, sorting, direction, subwayLine, category]);
 
   useEffect(() => {
     if (bios.length > 0) {
