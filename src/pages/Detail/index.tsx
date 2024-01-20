@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import {
   Box,
   Button,
@@ -23,10 +23,11 @@ export function DetailPage() {
   const { id } = useParams();
   const { data: bios = [] } = useGetAllBiosQuery();
   const selectedBio = bios.find((bio) => bio.id.toString() === id);
+  const { biosIdsArray } = useAppSelector((state) => state.bios);
 
-  const biosIdsArray: number[] = useAppSelector(
-    (state) => state.bios.biosIdsArray
-  );
+  if (!selectedBio) {
+    return <Navigate to="/" replace />;
+  }
 
   const currentPosition: number | undefined = id
     ? findPosition(biosIdsArray, parseInt(id))

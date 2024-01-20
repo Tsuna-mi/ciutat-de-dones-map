@@ -1,5 +1,5 @@
 import { Box } from '@chakra-ui/react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 
 import { HomePage } from '../../pages/Home/index';
 import { ResultsPage } from '../../pages/Results/index';
@@ -13,6 +13,7 @@ export function ContentSidebar() {
         <Route path="/" element={<HomePage />} />
         <Route path="/results" element={<ResultsPage />} />
         <Route path="/detail/:id" element={<DetailPage />} />
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Box>
   );
