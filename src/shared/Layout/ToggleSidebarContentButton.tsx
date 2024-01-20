@@ -5,7 +5,7 @@ export function ToggleSidebarContentButton({
   onToggle,
   isOpen,
 }: {
-  onToggle: any;
+  onToggle: () => void;
   isOpen: boolean;
 }) {
   return (

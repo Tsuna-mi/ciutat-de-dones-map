@@ -13,12 +13,12 @@ export function ProjectHeader({
   setHidden,
 }: {
   getButtonProps: any;
-  onToggle: any;
+  onToggle: () => void;
   isOpen: boolean;
   asideHeight: number;
   getDisclosureProps: any;
   hidden: boolean;
-  setHidden: any;
+  setHidden: (value: boolean) => void;
 }) {
   return (
     <>

@@ -7,7 +7,7 @@ export function ToggleButton({
   asideWidth,
 }: {
   getButtonProps: any;
-  onToggle: any;
+  onToggle: () => void;
   isOpen: boolean;
   asideWidth: number;
 }) {
