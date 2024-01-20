@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react';
 import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import {
   Box,
@@ -25,6 +26,13 @@ export function DetailPage() {
   const selectedBio = bios.find((bio) => bio.id.toString() === id);
   const { biosIdsArray } = useAppSelector((state) => state.bios);
 
+  const backBtnRef = useRef<HTMLButtonElement>(null);
+  useEffect(() => {
+    if (backBtnRef.current) {
+      backBtnRef.current.focus();
+    }
+  }, []);
+
   if (!selectedBio) {
     return <Navigate to="/" replace />;
   }
@@ -51,12 +59,11 @@ export function DetailPage() {
   return selectedBio?.id ? (
     <Page>
       <Flex>
-        <BackButton />
+        <BackButton ref={backBtnRef} />
         <Spacer />
         <Box height="45px" bg="white" borderRadius={'6'}>
           <ButtonGroup>
             <Center>
-              {/* <Button onClick={'setPreviousPage'} isDisabled={'!previousEnabled'}> */}
               <IconButton
                 variant="pagination"
                 size="xl"
@@ -65,13 +72,11 @@ export function DetailPage() {
                 onClick={handleGoToPrevious}
               />
               <Text as="span" color="gray5" lineHeight="2.7rem">
-                {/* {'currentPage'} / {'totalPages'} */}
                 {typeof currentPosition === 'number'
                   ? currentPosition + 1
                   : '--'}
                 / {biosIdsArray.length}
               </Text>
-              {/* <Button onClick={'setNextPage'} isDisabled={'!nextEnabled'}> */}
               <IconButton
                 variant="pagination"
                 size="xl"

@@ -1,5 +1,6 @@
+import { forwardRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Button, Icon } from '@chakra-ui/react';
+import { Button, ButtonProps, Icon } from '@chakra-ui/react';
 
 const BackArrowIcon = () => (
   <Icon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 20" fill="none">
@@ -10,17 +11,20 @@ const BackArrowIcon = () => (
   </Icon>
 );
 
-export function BackButton() {
-  const navigate = useNavigate();
-  return (
-    <Button
-      p="3"
-      fontSize="lg"
-      variant="normal"
-      leftIcon={<BackArrowIcon />}
-      onClick={() => navigate(-1)}
-    >
-      Volver
-    </Button>
-  );
-}
+export const BackButton = forwardRef<HTMLButtonElement, ButtonProps>(
+  (props, ref) => {
+    const navigate = useNavigate();
+    return (
+      <Button
+        ref={ref}
+        p="3"
+        fontSize="lg"
+        variant="normal"
+        leftIcon={<BackArrowIcon />}
+        onClick={() => navigate(-1)}
+      >
+        Volver
+      </Button>
+    );
+  }
+);

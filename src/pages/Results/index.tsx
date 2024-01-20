@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   Box,
@@ -45,6 +45,12 @@ export function ResultsPage() {
   const { data: allBios = [], isLoading = Boolean } = useGetAllBiosQuery();
   const [bios, setBios] = useState<Biography[]>([]);
 
+  const backBtnRef = useRef<HTMLButtonElement>(null);
+  useEffect(() => {
+    if (backBtnRef.current) {
+      backBtnRef.current.focus();
+    }
+  }, []);
   useEffect(() => {
     if (biosSearched.length > 0) {
       setBios(biosSearched);
@@ -85,7 +91,7 @@ export function ResultsPage() {
   return (
     <Page>
       <Flex marginBottom="20px">
-        <BackButton />
+        <BackButton ref={backBtnRef} />
         <Spacer />
         <Box height="45px" width="100px" bg="white" borderRadius={'6'}>
           <Center>
