@@ -53,6 +53,14 @@ const theme = extendTheme({
     heading: `'Kanit', sans-serif`,
     body: `'Source Sans Pro', sans-serif`,
   },
+  styles: {
+    global: {
+      '::selection': {
+        backgroundColor: '#FEDC2A',
+        color: '#5A3B5D',
+      },
+    },
+  },
   components: {
     Select: selectTheme,
     Button: {
