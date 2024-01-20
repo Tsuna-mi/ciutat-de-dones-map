@@ -136,9 +136,9 @@ export function ResultsPage() {
                 <Flex>
                   <Box>
                     <LinkOverlay
+                      href={`/detail/${bio.id}`}
                       onClick={() => {
                         dispatch(setBioId(bio.id));
-                        navigate(`/detail/${bio.id}`);
                       }}
                     >
                       <Heading
